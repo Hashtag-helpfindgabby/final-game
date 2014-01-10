@@ -8,7 +8,8 @@ class Mario {
     s = 5;
     b = 7;
     h = s;
-    loadImage
+    imgc = loadImage("caitlin running.jpg");
+    imga = loadImage("anita running.jpg");
   }
   boolean displayCaitlin() {
     image(imgc, loc.x, loc.y, s, h);

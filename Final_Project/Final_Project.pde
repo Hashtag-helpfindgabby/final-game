@@ -1,8 +1,8 @@
-class Mario {
+class mario {
   PImage imgc, imga;
   PVector loc, vel;
   float s, b, h;
-  Mario() {
+  mario() {
     loc = new PVector(width/2, height*3/4);
     vel = new PVector(5, 5);
     s = 5;

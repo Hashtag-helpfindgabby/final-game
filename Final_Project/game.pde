@@ -3,17 +3,18 @@ boolean start, stop;
 PImage optc, opta;
 PImage startHere;
 boolean goC, goA;
+int level;
 void setup() {
   background(0);
   startHere =loadImage("background.jpg");
-  size(displayWidth, displayHeight);
+  size(startHere.width,startHere.height);
   optc = loadImage("caitlin.png");
   opta = loadImage("anita.png");
   start= true;
-  size(500, 500);
   m = new mario();
   goC=false;
   goA=false;
+  level = 0;
 }
 void draw() {
   if (start == true && stop == false) {
@@ -33,6 +34,7 @@ void draw() {
     if (mousePressed) {
       start= true;
       stop = true;
+      level++;
     }
   }
   if (start == true && stop == true) {
@@ -45,13 +47,14 @@ void draw() {
       && mouseY>220 && mouseY<220+250) {
       goA=true;
     }
-    if (goC==true) {
+    if(goC==true || goA == true) {
       m.move();
-      m.displayCaitlin();
-      
+      m.jump();
+    }
+    if (goC==true) {
+      m.displayCaitlin(); 
     }
     if(goA==true) {
-      m.move();
       m.displayAnita();
     }
   }

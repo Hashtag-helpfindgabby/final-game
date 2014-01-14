@@ -13,7 +13,7 @@ class mario {
   }
   boolean displayCaitlin() {
     image(imgc, loc.x, loc.y, s, h);
-    return true; 
+    return true;
   }
   boolean displayAnita() {
     image(imga, loc.x, loc.y, s, h);
@@ -31,14 +31,19 @@ class mario {
   }
   void jump() {
     //if you press w, you will jump into the air
-    if(keyPressed && key=='w') {
-      vel.set(5,5);
-      if(loc.y>(height*2/3)+(vel.y+200)) {
-        vel.set(5,-5);
+    if (keyPressed && key=='w') {
+      vel.set(0, -5);
+      loc.add(vel);
+      if (loc.y>loc.y-50) {
+        vel.set(0, 5);
       }
     } 
     else {
-      vel.set(5,0);
+      vel.set(5, 0);
+    }
+    if (keyPressed && key=='s') {
+      vel.set(0, 5);
+      loc.add(vel);
     }
   }
 }

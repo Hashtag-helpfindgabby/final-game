@@ -3,7 +3,7 @@ class mario {
   PVector loc, vel;
   float s, b, h;
   mario() {
-    loc = new PVector(2, height*3/4);
+    loc = new PVector(2, height/2);
     vel = new PVector(5, 0);
     s = 100;
     b = 120;

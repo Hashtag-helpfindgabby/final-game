@@ -21,7 +21,7 @@ void draw() {
   background(story1);
   currentTime = millis();
   timeChange = currentTime - oldTime;
-  if (timeChange >= 8000) {
+  if (timeChange >= 10000) {
     start = true;
     stop = false;
   }

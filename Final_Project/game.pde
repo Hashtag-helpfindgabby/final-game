@@ -34,11 +34,13 @@ void draw() {
     if (mousePressed) {
       start= true;
       stop = true;
-      level++;
+      level+=1;
     }
   }
   if (start == true && stop == true) {
     background(0);
+    fill(255,0,0);
+    text(level,50,50);
     if (mousePressed && mouseX>75 && mouseX<75+200 
       && mouseY>220 && mouseY<220+250) {
       goC = true;
@@ -56,6 +58,10 @@ void draw() {
     }
     if(goA==true) {
       m.displayAnita();
+    }
+    if(m.loc.x>width-m.s) {
+      level++;
+      m.loc.set(0,height/2);
     }
   }
 }

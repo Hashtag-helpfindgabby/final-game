@@ -7,11 +7,10 @@ int currentTime = 0;
 int timeChange = 0;
 
 void setup() {
-  background(0);
   story1 = loadImage("story 1.png");
-  size(story1.width, story1.height);
-  background(story1);
   startHere =loadImage("background.jpg");
+  size(startHere.width, startHere.height);
+  background(0);
   optc = loadImage("caitlin.png");
   opta = loadImage("anita.png");
   start= false;
@@ -19,6 +18,7 @@ void setup() {
   m = new mario();
 }
 void draw() {
+  background(story1);
   currentTime = millis();
   timeChange = currentTime - oldTime;
   if (timeChange >= 8000) {

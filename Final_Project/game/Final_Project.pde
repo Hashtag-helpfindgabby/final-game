@@ -3,17 +3,17 @@ class mario {
   PVector loc, vel;
   float s, b, h;
   mario() {
-    loc = new PVector(width/2, height*3/4);
-    vel = new PVector(5, 5);
-    s = 5;
-    b = 7;
+    loc = new PVector(2, height/2);
+    vel = new PVector(5, 0);
+    s = 100;
+    b = 120;
     h = s;
     imgc = loadImage("caitlin running.png");
     imga = loadImage("anita running.png");
   }
   boolean displayCaitlin() {
     image(imgc, loc.x, loc.y, s, h);
-    return true; 
+    return true;
   }
   boolean displayAnita() {
     image(imga, loc.x, loc.y, s, h);
@@ -21,11 +21,30 @@ class mario {
   }
   void move() {
     if (keyPressed && key=='d') {
-      loc.x++;
+      //if you press d, you move forward
+      loc.add(vel);
     }
     if (keyPressed && key=='a') {
-      loc.x--;
+      //if you press a, you move backward
+      loc.sub(vel);
     }
-  }    
+  }
+  void jump() {
+    //if you press w, you will jump into the air
+    if (keyPressed && key=='w') {
+      vel.set(0, -5);
+      loc.add(vel);
+      if (loc.y>loc.y-50) {
+        vel.set(0, 5);
+      }
+    } 
+    else {
+      vel.set(5, 0);
+    }
+    if (keyPressed && key=='s') {
+      vel.set(0, 5);
+      loc.add(vel);
+    }
+  }
 }
 

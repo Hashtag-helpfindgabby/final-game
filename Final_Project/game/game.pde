@@ -1,30 +1,18 @@
 mario m;
 boolean start, stop;
 PImage optc, opta;
-PImage story1, startHere;
-int oldTime = 0;
-int currentTime = 0;
-int timeChange = 0;
-
+PImage startHere;
 void setup() {
-  story1 = loadImage("story 1.png");
-  startHere =loadImage("background.jpg");
-  size(startHere.width, startHere.height);
   background(0);
+  startHere =loadImage("background.jpg");
+  size(displayWidth, displayHeight);
   optc = loadImage("caitlin.png");
   opta = loadImage("anita.png");
-  start= false;
-  stop = true;
+  start= true;
+  size(500, 500);
   m = new mario();
 }
 void draw() {
-  background(story1);
-  currentTime = millis();
-  timeChange = currentTime - oldTime;
-  if (timeChange >= 8000) {
-    start = true;
-    stop = false;
-  }
   if (start == true && stop == false) {
     //start screen
     background(0);

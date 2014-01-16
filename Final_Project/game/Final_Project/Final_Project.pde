@@ -2,6 +2,7 @@ class mario {
   PImage imgc, imga;
   PVector loc, vel;
   float s, b, h;
+
   mario() {
     loc = new PVector(2, height/2);
     vel = new PVector(5, 0);
@@ -54,5 +55,7 @@ class mario {
       return false;
     }
   }
+  void checkPearl() {
+    
 }
 

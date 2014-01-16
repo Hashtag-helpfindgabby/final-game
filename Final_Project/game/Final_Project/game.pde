@@ -8,20 +8,14 @@ int currentTime = 0;
 int timeChange = 0;
 boolean goC, goA;
 int level;
-<<<<<<< HEAD:Final_Project/game/Final_Project/game.pde
-
-=======
 PImage l0;
 int index = 1;
->>>>>>> origin/Arlene:Final_Project/game.pde
+
 void setup() {
   story1 = loadImage("story 1.png");
   startHere =loadImage("background.jpg");
   size(startHere.width, startHere.height);
-<<<<<<< HEAD:Final_Project/game/Final_Project/game.pde
   background(0);
-=======
->>>>>>> origin/Arlene:Final_Project/game.pde
   optc = loadImage("caitlin.png");
   opta = loadImage("anita.png");
   start= false;
@@ -64,13 +58,10 @@ void draw() {
     }
   }
   if (start == true && stop == true) {
-<<<<<<< HEAD:Final_Project/game/Final_Project/game.pde
     background(0);
-=======
     if (level==1) {
       image(l0, 0, 0, startHere.width, startHere.height);
     }
->>>>>>> origin/Arlene:Final_Project/game.pde
     fill(255, 0, 0);
     text(level, 50, 50);
     if (mousePressed && mouseX>75 && mouseX<75+200 
@@ -94,10 +85,7 @@ void draw() {
     if (m.loc.x>width-m.s) {
       level++;
       m.loc.set(0, height/2);
-<<<<<<< HEAD:Final_Project/game/Final_Project/game.pde
-=======
       //if you get to the end of the screen you move to the next level
->>>>>>> origin/Arlene:Final_Project/game.pde
     }
     if(level==1) {
       for (int i=0;i<index;i++) {
@@ -113,8 +101,11 @@ void draw() {
           start=false;
           level=0;
         }
+        }
       }
     }  
   }
 }
+
+
 

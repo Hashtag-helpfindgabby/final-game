@@ -39,6 +39,7 @@ void draw() {
     image(optc, 75, 220, 200, 250);
     image(opta, 520, 220, 200, 250);
     if (mousePressed) {
+      //if you click, you go to the first level of the game
       start= true;
       stop = true;
       level+=1;
@@ -71,15 +72,18 @@ void draw() {
     if (m.loc.x>width-m.s) {
       level++;
       m.loc.set(0, height/2);
+      //if you get to the end of the screen you move to the next level
     }
     if(level==1) {
       for (int i=0;i<index;i++) {
+        //declares lion class
         lions[i].display();
         lions[i].fall();
         if(i==25) {
           i=0;
         }
         if (m.checkRunner(lions[i]) == true) {
+          //if the lion touches the runner, you start over
           start=true;
           start=false;
           level=0;

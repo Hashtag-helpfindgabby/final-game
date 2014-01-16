@@ -6,7 +6,6 @@ class mario {
     loc = new PVector(2, height/2);
     vel = new PVector(5, 0);
     s = 100;
-    b = 120;
     h = s;
     imgc = loadImage("caitlin running.png");
     imga = loadImage("anita running.png");
@@ -44,6 +43,15 @@ class mario {
     if (keyPressed && key=='s') {
       vel.set(0, 5);
       loc.add(vel);
+    }
+  }
+  boolean checkRunner(Lion l) {
+    if(loc.dist(l.loc) < s/2 + l.h/2) {
+      return true;
+      //return a true value if the runner and lion touch
+    }
+    else {
+      return false;
     }
   }
 }

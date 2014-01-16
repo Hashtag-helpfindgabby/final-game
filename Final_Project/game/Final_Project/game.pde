@@ -1,4 +1,5 @@
 mario m;
+Lion[] lions = new Lion[25];
 boolean start, stop;
 PImage optc, opta;
 PImage story1, startHere;
@@ -7,12 +8,20 @@ int currentTime = 0;
 int timeChange = 0;
 boolean goC, goA;
 int level;
+<<<<<<< HEAD:Final_Project/game/Final_Project/game.pde
 
+=======
+PImage l0;
+int index = 1;
+>>>>>>> origin/Arlene:Final_Project/game.pde
 void setup() {
   story1 = loadImage("story 1.png");
   startHere =loadImage("background.jpg");
   size(startHere.width, startHere.height);
+<<<<<<< HEAD:Final_Project/game/Final_Project/game.pde
   background(0);
+=======
+>>>>>>> origin/Arlene:Final_Project/game.pde
   optc = loadImage("caitlin.png");
   opta = loadImage("anita.png");
   start= false;
@@ -21,6 +30,10 @@ void setup() {
   goC=false;
   goA=false;
   level = 0;
+  l0 = loadImage("Jungle .jpg");
+  for (int i=0; i<lions.length; i++) {
+    lions[i] = new Lion();
+  }
 }
 
 void draw() {
@@ -44,13 +57,20 @@ void draw() {
     image(optc, 75, 220, 200, 250);
     image(opta, 520, 220, 200, 250);
     if (mousePressed) {
+      //if you click, you go to the first level of the game
       start= true;
       stop = true;
       level+=1;
     }
   }
   if (start == true && stop == true) {
+<<<<<<< HEAD:Final_Project/game/Final_Project/game.pde
     background(0);
+=======
+    if (level==1) {
+      image(l0, 0, 0, startHere.width, startHere.height);
+    }
+>>>>>>> origin/Arlene:Final_Project/game.pde
     fill(255, 0, 0);
     text(level, 50, 50);
     if (mousePressed && mouseX>75 && mouseX<75+200 
@@ -74,7 +94,27 @@ void draw() {
     if (m.loc.x>width-m.s) {
       level++;
       m.loc.set(0, height/2);
+<<<<<<< HEAD:Final_Project/game/Final_Project/game.pde
+=======
+      //if you get to the end of the screen you move to the next level
+>>>>>>> origin/Arlene:Final_Project/game.pde
     }
+    if(level==1) {
+      for (int i=0;i<index;i++) {
+        //declares lion class
+        lions[i].display();
+        lions[i].fall();
+        if(i==25) {
+          i=0;
+        }
+        if (m.checkRunner(lions[i]) == true) {
+          //if the lion touches the runner, you start over
+          start=true;
+          start=false;
+          level=0;
+        }
+      }
+    }  
   }
 }
 

@@ -6,7 +6,7 @@ PImage startHere;
 boolean goC, goA;
 int level;
 PImage l0;
-int index = 1;
+int index = 5;
 void setup() {
   background(0);
   startHere =loadImage("background.jpg");
@@ -79,8 +79,6 @@ void draw() {
         //declares lion class
         lions[i].display();
         lions[i].fall();
-        if(i==25) {
-          i=0;
         }
         if (m.checkRunner(lions[i]) == true) {
           //if the lion touches the runner, you start over

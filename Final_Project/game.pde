@@ -1,13 +1,16 @@
 mario m;
+Lion[] lions = new Lion[25];
 boolean start, stop;
 PImage optc, opta;
 PImage startHere;
 boolean goC, goA;
 int level;
+PImage l0;
+int index = 1;
 void setup() {
   background(0);
   startHere =loadImage("background.jpg");
-  size(startHere.width,startHere.height);
+  size(startHere.width, startHere.height);
   optc = loadImage("caitlin.png");
   opta = loadImage("anita.png");
   start= true;
@@ -15,6 +18,10 @@ void setup() {
   goC=false;
   goA=false;
   level = 0;
+  l0 = loadImage("Jungle .jpg");
+  for (int i=0; i<lions.length; i++) {
+    lions[i] = new Lion();
+  }
 }
 void draw() {
   if (start == true && stop == false) {
@@ -38,9 +45,11 @@ void draw() {
     }
   }
   if (start == true && stop == true) {
-    background(0);
-    fill(255,0,0);
-    text(level,50,50);
+    if (level==1) {
+      image(l0, 0, 0, startHere.width, startHere.height);
+    }
+    fill(255, 0, 0);
+    text(level, 50, 50);
     if (mousePressed && mouseX>75 && mouseX<75+200 
       && mouseY>220 && mouseY<220+250) {
       goC = true;
@@ -49,20 +58,34 @@ void draw() {
       && mouseY>220 && mouseY<220+250) {
       goA=true;
     }
-    if(goC==true || goA == true) {
+    if (goC==true || goA == true) {
       m.move();
       m.jump();
     }
     if (goC==true) {
-      m.displayCaitlin(); 
+      m.displayCaitlin();
     }
-    if(goA==true) {
+    if (goA==true) {
       m.displayAnita();
     }
-    if(m.loc.x>width-m.s) {
+    if (m.loc.x>width-m.s) {
       level++;
-      m.loc.set(0,height/2);
+      m.loc.set(0, height/2);
     }
+    if(level==1) {
+      for (int i=0;i<index;i++) {
+        lions[i].display();
+        lions[i].fall();
+        if(i==25) {
+          i=0;
+        }
+        if (m.checkRunner(lions[i]) == true) {
+          start=true;
+          start=false;
+          level=0;
+        }
+      }
+    }  
   }
 }
 

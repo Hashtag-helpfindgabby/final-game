@@ -1,22 +1,21 @@
 class mario {
   PImage imgc, imga;
   PVector loc, vel;
-  float s, b, h;
+  float d;
 
   mario() {
     loc = new PVector(2, height/2);
     vel = new PVector(5, 0);
-    s = 100;
-    h = s;
+    d = 100;
     imgc = loadImage("caitlin running.png");
     imga = loadImage("anita running.png");
   }
   boolean displayCaitlin() {
-    image(imgc, loc.x, loc.y, s, h);
+    image(imgc, loc.x, loc.y, d, d);
     return true;
   }
   boolean displayAnita() {
-    image(imga, loc.x, loc.y, s, h);
+    image(imga, loc.x, loc.y, d, d);
     return false;
   }
   void move() {
@@ -47,7 +46,7 @@ class mario {
     }
   }
   boolean checkRunner(Lion l) {
-    if(loc.dist(l.loc) < s/2 + l.h/2) {
+    if(loc.dist(l.loc) < d/2 + l.d/2) {
       return true;
       //return a true value if the runner and lion touch
     }
@@ -55,7 +54,13 @@ class mario {
       return false;
     }
   }
-  void checkPearl() {
-    
+  boolean checkPearl(Pearl p) {
+    if (loc.dist(r.loc) < d/2 + r.d/2) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 }
 

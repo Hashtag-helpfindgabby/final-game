@@ -4,11 +4,11 @@ class Lion {
   PImage img;
 
   Lion() {
-    loc = new PVector(-w, random(height));
+    loc = new PVector(random(-500,-100), random(height));
     vel = new PVector(random(6, 10), 0);
     w = 100;
     h = 50;
-    img = loadImage("lion.jpg");
+    img = loadImage("lion.png");
   }
   void display() {
     image(img, loc.x, loc.y, w, h);

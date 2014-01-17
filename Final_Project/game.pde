@@ -6,7 +6,7 @@ PImage startHere;
 boolean goC, goA;
 int level;
 PImage l0;
-int index = 5;
+int index = 1;
 void setup() {
   background(0);
   startHere =loadImage("background.jpg");
@@ -69,7 +69,7 @@ void draw() {
     if (goA==true) {
       m.displayAnita();
     }
-    if (m.loc.x>width-m.s) {
+    if (m.loc.x>width-m.d) {
       level++;
       m.loc.set(0, height/2);
       //if you get to the end of the screen you move to the next level
@@ -79,11 +79,10 @@ void draw() {
         //declares lion class
         lions[i].display();
         lions[i].fall();
-        }
+     
         if (m.checkRunner(lions[i]) == true) {
           //if the lion touches the runner, you start over
-          start=true;
-          start=false;
+          stop=false;
           level=0;
         }
       }

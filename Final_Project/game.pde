@@ -6,7 +6,7 @@ PImage startHere;
 boolean goC, goA;
 int level;
 PImage l0;
-int index = 1;
+int index = 3;
 void setup() {
   background(0);
   startHere =loadImage("background.jpg");
@@ -84,6 +84,7 @@ void draw() {
           //if the lion touches the runner, you start over
           stop=false;
           level=0;
+          lions[i].loc.set(-700,-500);
         }
       }
     }  

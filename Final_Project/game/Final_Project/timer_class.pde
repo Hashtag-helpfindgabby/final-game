@@ -5,9 +5,11 @@ class Timer {
   int timeChange = 0;
   
   void setup() {
-    story2 = loadImage("story 2.png");
-    story3 = loadImage("story 1.png");
-    story4 = loadImage("story 1.png");
-    story5 = loadImage("story 1.png");
-    cliff = loadImage("story 1.png");
-    endHere = loadImage("story 1.png");
+    story2 = loadImage("runfromlions.jpg");
+    story3 = loadImage("story 2.png");
+    story4 = loadImage("story 3.png");
+    story5 = loadImage("end.jpg");
+    cliff = loadImage("cliff.png");
+    endHere = loadImage("winner.jpg");
+    Timer() {
+      

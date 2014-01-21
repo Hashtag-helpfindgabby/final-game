@@ -1,44 +1,32 @@
 mario m;
-//Lion[] lions = new Lion[25];
+Lion[] lions = new Lion[25];
 boolean start, stop;
 PImage optc, opta;
-PImage story1, startHere;
-int oldTime = 0;
-int currentTime = 0;
-int timeChange = 0;
+PImage startHere;
 boolean goC, goA;
 int level;
-//PImage l0;
+PImage l0;
 int index = 1;
-
 void setup() {
-  story1 = loadImage("story 1.png");
+  background(0);
   startHere =loadImage("background.jpg");
   size(startHere.width, startHere.height);
-  background(0);
   optc = loadImage("caitlin.png");
   opta = loadImage("anita.png");
-  start= false;
-  stop = false;
+  start= true;
   m = new mario();
   goC=false;
   goA=false;
   level = 0;
-//  l0 = loadImage("Jungle .jpg");
-//  for (int i=0; i<lions.length; i++) {
-//    lions[i] = new Lion();
+  l0 = loadImage("Jungle .jpg");
+  for (int i=0; i<lions.length; i++) {
+    lions[i] = new Lion();
   }
-//}
-
+}
 void draw() {
-  background(story1);
-  currentTime = millis();
-  timeChange = currentTime - oldTime;
-  if (currentTime >= 10000) {
-    start = true;
-  }
   if (start == true && stop == false) {
     //start screen
+    background(0);
     image(startHere, 0, 0);
     rectMode(CENTER);
     fill(250);
@@ -58,7 +46,6 @@ void draw() {
     }
   }
   if (start == true && stop == true) {
-    background(0);
     if (level==1) {
       image(l0, 0, 0, startHere.width, startHere.height);
     }
@@ -87,33 +74,20 @@ void draw() {
       m.loc.set(0, height/2);
       //if you get to the end of the screen you move to the next level
     }
-//    if(level==1) {
-//      for (int i=0;i<index;i++) {
-//        //declares lion class
-//        lions[i].display();
-//        lions[i].fall();
-//        if(i==25) {
-//          i=0;
-//        }
-//        if (m.checkRunner(lions[i]) == true) {
-//          //if the lion touches the runner, you start over
-//          start=true;
-//          start=false;
-//          level=0;
+    if (level==1) {
+      for (int i=0;i<index;i++) {
+        //declares lion class
+        lions[i].display();
+        lions[i].fall();
+
+        if (m.checkRunner(lions[i]) == true) {
+          //if the lion touches the runner, you start over
+          stop=false;
+          level=0;
+          lions[i].reset();
         }
-        }
-        if(level==2) { 
-          for (int i=1; i<index; i++) {
-            pearl[i].display();
-            pearl[i].fall();
-            if(i==15) {
-              i=0;
-            }
-            
       }
-    }  
+    }
   }
 }
-
-
 

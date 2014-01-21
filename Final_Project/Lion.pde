@@ -4,11 +4,19 @@ class Lion {
   PImage img;
 
   Lion() {
+<<<<<<< HEAD
     loc = new PVector(-w, random(height));
     vel = new PVector(random(6, 10), 0);
     w = 100;
     h = 50;
     img = loadImage("lion.jpg");
+=======
+    loc = new PVector(-500, random(height));
+    vel = new PVector(random(6,10), 0);
+    w = 100;
+    h = 50;
+    img = loadImage("lion.png");
+>>>>>>> origin/master
   }
   void display() {
     image(img, loc.x, loc.y, w, h);
@@ -25,5 +33,12 @@ class Lion {
       //if the location is beyond the screen, loc.x = 0
     }
   }
+<<<<<<< HEAD
+=======
+  void reset() {
+    loc.set(-w, random(height));
+    
+  }
+>>>>>>> origin/master
 }
 

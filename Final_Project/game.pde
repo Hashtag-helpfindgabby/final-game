@@ -1,12 +1,14 @@
 mario m;
 Lion[] lions = new Lion[25];
+Obstacle[] obstacles = new Obstacle[25];
 boolean start, stop;
 PImage optc, opta;
 PImage startHere;
 boolean goC, goA;
 int level;
 PImage l0;
-int index = 3;
+int index = 15;
+int index2 = 5;
 void setup() {
   background(0);
   startHere =loadImage("background.jpg");
@@ -21,6 +23,9 @@ void setup() {
   l0 = loadImage("Jungle .jpg");
   for (int i=0; i<lions.length; i++) {
     lions[i] = new Lion();
+  }
+  for (int z=0; z<obstacles.length;z++) {
+    obstacles[z] = new Obstacle();
   }
 }
 void draw() {
@@ -74,20 +79,26 @@ void draw() {
       m.loc.set(0, height/2);
       //if you get to the end of the screen you move to the next level
     }
-    if(level==1) {
+    if (level==1) {
       for (int i=0;i<index;i++) {
         //declares lion class
         lions[i].display();
         lions[i].fall();
-     
-        if (m.checkRunner(lions[i]) == true) {
+
+        if (m.checkRunnerL(lions[i]) == true) {
           //if the lion touches the runner, you start over
           stop=false;
           level=0;
-          lions[i].loc.set(-700,-500);
+          lions[i].reset();
         }
       }
-    }  
+
+      for (int z=0; z<index2;z++) {
+        obstacles[z] = new Obstacle();
+        obstacles[z].display();
+        m.checkRunnerO(obstacles[z]);
+      }
+    }
   }
 }
 

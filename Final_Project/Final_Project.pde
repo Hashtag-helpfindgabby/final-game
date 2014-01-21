@@ -44,13 +44,20 @@ class mario {
       loc.add(vel);
     }
   }
-  boolean checkRunner(Lion l) {
+  boolean checkRunnerL(Lion l) {
     if(loc.dist(l.loc) < d/2 + l.h/2) {
       return true;
       //return a true value if the runner and lion touch
     }
     else {
       return false;
+    }
+  }
+  void checkRunnerO(Obstacle o) {
+    if(loc.dist(o.loc) < d/2) {
+      vel.set(0,0);
+      //if the runner touches the square, it doesnt move
+      //NOT WORKING
     }
   }
 }

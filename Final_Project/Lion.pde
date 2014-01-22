@@ -26,6 +26,6 @@ class Lion {
     }
   }
   void obstacle() {
-    
+  }   
 }
 

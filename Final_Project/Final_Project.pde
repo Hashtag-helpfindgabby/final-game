@@ -130,7 +130,7 @@ void draw() {
       if (m.loc.x>width-m.d) {
         lions[i].done();
         m.loc.set(0, height*3/4);
-        background(story2);
+        background(story3);
         timer = new Timer(10000);
         timer.start();
         if(timer.isFinished()) {

@@ -2,7 +2,7 @@ mario m;
 Obstacle o;
 Lion[] lions = new Lion[25];
 Fireballs[] fireball = new Fireballs[25];
-Pearl[] pearls = new Pearl[15];
+Pearl[] pearls = new Pearl[20];
 boolean start, stop;
 PImage optc, opta;
 PImage startHere;
@@ -43,6 +43,7 @@ void setup() {
   }
 }
 void draw() {
+
   if (start == true && stop == false) {
     //start screen
     background(0);
@@ -92,76 +93,82 @@ void draw() {
     if (goA==true) {
       m.displayAnita();
     }
-    if (m.loc.x>width-m.d) {
-      level++;
-      m.loc.set(0, height/2);
-      if (level==2) {
+  }
+  if (level==1) {
+    if (millis() - lionTime > threshold) { 
+      if (index< lions.length) {
+        //timer to limit the lions coming out at once
+        index++;
+        lionTime = millis();
+        //if the difference b/w milli and lionTime is greater than threshold, then one lion goes
+      }
+    }
+    for (int i=0;i<index;i++) {
+      //declares lion class
+      lions[i].display();
+      lions[i].fall();
+      o.display1();
+      o.display2();
+      o.display3();
+      m.checkRunnerO(o);
+
+
+      if (m.checkRunnerL(lions[i]) == true) {
+        //if the lion touches the runner, you start over
+        stop=false;
+        level=0;
+        m.loc.set(0, height/2);
+        index=1;
+      }
+
+      if (m.loc.x>width-m.d) {
+        lions[i].done();
         m.loc.set(0, height*3/4);
-      }
-      //if you get to the end of the screen you move to the next level
-    }
-    if (level==1) {
-      if (millis() - lionTime > threshold) { 
-        if (index< lions.length) {
-          //timer to limit the lions coming out at once
-          index++;
-          lionTime = millis();
-          //if the difference b/w milli and lionTime is greater than threshold, then one lion goes
-        }
-      }
-      for (int i=0;i<index;i++) {
-        //declares lion class
-        lions[i].display();
-        lions[i].fall();
-        o.display1();
-        o.display2();
-        o.display3();
-        m.checkRunnerO(o);
-
-
-        if (m.checkRunnerL(lions[i]) == true) {
-          //if the lion touches the runner, you start over
-          stop=false;
-          level=0;
-          lions[i].reset();
-          m.loc.set(0, height/2);
-          index=1;
-        }
+        level++;
       }
     }
-    if (level==2) {
-      fill(255, 0, 255);
-      textSize(50);
-      text(p, 50, 100);
-      for (int k=1; k<index4; k++) {
-        //display pearls and they fall
-        pearls[k].display();
-        pearls[k].fall();
-        if (k==15) {
-          k=0;
-        }
-        if (m.checkRunnerP (pearls[k]) == true) {
-          //if a  pearl falls through the runner, it goes away and the score increases
-          pearls[k].goAway();
-          threshold-=100;
-          p++;
-        }
-        if (p==15) {
-          level++;
-        }
+  }
+
+  if (level==2) {
+    fill(255, 0, 255);
+    textSize(50);
+    text(p, 50, 100);
+    if (millis() - lionTime > threshold) { 
+      if (index4< pearls.length) {
+        //timer to limit the pearls coming down at once
+        //uses the same timer as the lions
+        index4++;
+        lionTime = millis();
       }
     }
+    for (int k=1; k<index4; k++) {
+      //display pearls and they fall
+      pearls[k].display();
+      pearls[k].fall();
+      if (k==15) {
+        k=0;
+      }
+      if (m.checkRunnerP (pearls[k]) == true) {
+        //if a  pearl falls through the runner, it goes away and the score increases
+        pearls[k].goAway();
+        threshold-=100;
+        p++;
+      }
+      if (p==15) {
+        level++;
+      }
+    }
+  }
 
-    if (level==3) {
-      for ( int q=0; q<index3; q++) {
-        fireball[q] = new Fireballs();
-        //declare fireballs
-        if (m.checkRunnerF(fireball[q]) == true) {
-          //if the runner hits a fireball, back to start
-          stop = false;
-          level = 0;
-          fireball[q].reset();
-        }
+  if (level==3) {
+    for ( int q=0; q<index3; q++) {
+      fireball[q] = new Fireballs();
+      //declare fireballs
+      if (m.checkRunnerF(fireball[q]) == true) {
+        //if the runner hits a fireball, back to start
+        stop = false;
+        level = 0;
+        fireball[q].reset();
       }
     }
   }

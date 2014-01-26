@@ -25,8 +25,10 @@ class Lion {
       //if the location is beyond the screen, loc.x = 0
     }
   }
-  void reset() {
-    loc.set(-2000, -w);
+  void done() {
+    loc.set(0,0);
+    vel.set(0,0);
+    loc.add(vel);
   }
 }
 

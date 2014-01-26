@@ -36,14 +36,14 @@ class mario {
       loc.add(vel);
     }
     else {
-      vel.set(3,0);
+      vel.set(3, 0);
     }
     if (keyPressed && key=='s') {
       vel.set(0, 3);
       loc.add(vel);
     }
     else {
-      vel.set(3,0);
+      vel.set(3, 0);
     }
   }
   void reset() {
@@ -52,7 +52,7 @@ class mario {
   }
 
   boolean checkRunnerL(Lion l) {
-    if (loc.dist(l.loc) < d + l.h) {
+    if (loc.dist(l.loc) < d/2 + l.h/2 ) {
       return true;
       //return a true value if the runner and lion touch
     }
@@ -61,7 +61,7 @@ class mario {
     }
   }
   void checkRunnerO(Obstacle o) {
-    if (dist(loc.x,loc.y,o.loc.x,o.loc.y) < d/2 + o.d/2) {
+    if (dist(loc.x, loc.y, o.loc.x, o.loc.y) < d/2 + o.d/2) {
       move=false;
       //if the runner touches the square, it doesnt move forward
     }
@@ -78,7 +78,7 @@ class mario {
     }
   }
   boolean checkRunnerP (Pearl p) {
-    if (p.loc.x + p.d > loc.x && p.loc.y + p.d > loc.y && p.loc.x - p.d < loc.x + imgc.width && p.loc.y - p.d < p.loc.y + imgc.height) {
+    if (loc.dist(p.loc) < d/2 + p.d/2) {
       return true;
     }
     else {

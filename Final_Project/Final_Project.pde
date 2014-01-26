@@ -1,11 +1,12 @@
 mario m;
+Timer timer;
 Obstacle o;
 Lion[] lions = new Lion[25];
 Fireballs[] fireball = new Fireballs[25];
 Pearl[] pearls = new Pearl[20];
 boolean start, stop;
 PImage optc, opta;
-PImage startHere;
+PImage startHere, story2, story3, story4, story5, cliff, endHere;
 boolean goC, goA;
 int level;
 PImage l1, l2, l3;
@@ -32,6 +33,12 @@ void setup() {
   l1 = loadImage("Jungle .jpg");
   l2 = loadImage("ocean.jpg");
   l3 = loadImage("hell.jpg");
+  story2 = loadImage("runfromlions.jpg");
+  story3 = loadImage("story 2.png");
+  story4 = loadImage("story 3.png");
+  story5 = loadImage("end.jpg");
+  cliff = loadImage("cliff.png");
+  endHere = loadImage("winner.jpg");
   for (int i=0; i<lions.length; i++) {
     lions[i] = new Lion();
   }
@@ -43,7 +50,6 @@ void setup() {
   }
 }
 void draw() {
-
   if (start == true && stop == false) {
     //start screen
     background(0);
@@ -124,7 +130,12 @@ void draw() {
       if (m.loc.x>width-m.d) {
         lions[i].done();
         m.loc.set(0, height*3/4);
-        level++;
+        background(story2);
+        timer = new Timer(10000);
+        timer.start();
+        if(timer.isFinished()) {
+          level++;
+        }
       }
     }
   }

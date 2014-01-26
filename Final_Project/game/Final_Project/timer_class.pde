@@ -1,15 +1,21 @@
 class Timer {
-  PImage story2, story3, story4, story5, cliff, endHere;
-  int oldTime = 0;
-  int currentTime = 0;
-  int timeChange = 0;
+  int savedTime, totalTime;
   
-  void setup() {
-    story2 = loadImage("runfromlions.jpg");
-    story3 = loadImage("story 2.png");
-    story4 = loadImage("story 3.png");
-    story5 = loadImage("end.jpg");
-    cliff = loadImage("cliff.png");
-    endHere = loadImage("winner.jpg");
-    Timer() {
-      
+  Timer(int tempTotalTime) {
+    totalTime = tempTotalTime;
+    
+    void start() {
+      savedTime = millis();
+    }
+    
+    boolean isfinished() {
+      int passedTime = millis() - savedTime;
+      if(passedTime > totalTime) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+  }
+}

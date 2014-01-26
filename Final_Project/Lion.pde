@@ -4,8 +4,8 @@ class Lion {
   PImage img;
 
   Lion() {
-    loc = new PVector(random(-2000,-w), random(height));
-    vel = new PVector(random(6, 10), 0);
+    loc = new PVector(random( -w), random(height));
+    vel = new PVector(random(3, 5), 0);
     w = 100;
     h = 50;
     img = loadImage("lion.png");
@@ -26,7 +26,7 @@ class Lion {
     }
   }
   void reset() {
-    loc.set(-2000,-w);
+    loc.set(-2000, -w);
   }
 }
 

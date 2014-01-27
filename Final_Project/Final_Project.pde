@@ -14,7 +14,7 @@ int index = 1;
 int index2 = 5;
 int index3 = 10;
 int index4 = 1;
-int threshold = 1000;
+int threshold = 5000;
 int lionTime = 0;
 int pearlTime = 0;
 int p = 0;
@@ -34,8 +34,8 @@ void setup() {
   l2 = loadImage("ocean.jpg");
   l3 = loadImage("hell.jpg");
   story2 = loadImage("runfromlions.jpg");
-  story3 = loadImage("story 2.png");
-  story4 = loadImage("story 3.png");
+  story3 = loadImage("story 2.jpg");
+  story4 = loadImage("story 3.jpg");
   story5 = loadImage("end.jpg");
   cliff = loadImage("cliff.png");
   endHere = loadImage("winner.jpg");
@@ -114,7 +114,9 @@ void draw() {
       lions[i].display();
       lions[i].fall();
       o.display1();
+      m.checkRunnerO(o);
       o.display2();
+      m.checkRunnerO(o);
       o.display3();
       m.checkRunnerO(o);
 
@@ -130,7 +132,8 @@ void draw() {
       if (m.loc.x>width-m.d) {
         lions[i].done();
         m.loc.set(0, height*3/4);
-        background(story3);
+        level++;
+        image(story3,0,0,startHere.width,startHere.height);
         timer = new Timer(10000);
         timer.start();
         if(timer.isFinished()) {
@@ -165,7 +168,7 @@ void draw() {
         threshold-=100;
         p++;
       }
-      if (p==15) {
+      if (p==10) {
         level++;
       }
     }

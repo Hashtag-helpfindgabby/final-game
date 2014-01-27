@@ -6,7 +6,7 @@ class Obstacle {
     d=50;
   }
   void display1() {
-    loc.set(width/2,height/2);
+    loc.set(width/2,height/2+50);
     strokeWeight(3);
     fill(140,130,60);
     rect(loc.x,loc.y,d,d);

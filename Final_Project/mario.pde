@@ -78,7 +78,7 @@ class mario {
     }
   }
   boolean checkRunnerP (Pearl p) {
-    if (loc.dist(p.loc) < d/2 + p.d/2) {
+    if (loc.dist(p.loc) < d/2 - p.d/2) {
       return true;
     }
     else {

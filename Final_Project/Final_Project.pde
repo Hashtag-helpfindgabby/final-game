@@ -1,5 +1,4 @@
-mario m;
-Timer timer;
+Mario m;
 Obstacle o;
 Lion[] lions = new Lion[25];
 Fireballs[] fireball = new Fireballs[25];
@@ -25,8 +24,9 @@ void setup() {
   optc = loadImage("caitlin.png");
   opta = loadImage("anita.png");
   start= true;
-  m = new mario();
+  m = new Mario();
   o = new Obstacle();
+//   timer = new Timer(2000);
   goC=false;
   goA=false;
   level = 0;
@@ -90,8 +90,13 @@ void draw() {
       goA=true;
     }
     if (goC==true || goA == true) {
-      m.move();
-      m.jump();
+      if (millis()/1000 < 10) {
+        image(story2, 0, 0, startHere.width, startHere.height);
+      }
+      else {
+        m.move();
+        m.jump();
+      }
     }
     if (goC==true) {
       m.displayCaitlin();
@@ -133,58 +138,53 @@ void draw() {
         lions[i].done();
         m.loc.set(0, height*3/4);
         level++;
-        image(story3,0,0,startHere.width,startHere.height);
-        timer = new Timer(10000);
-        timer.start();
-        if(timer.isFinished()) {
-          level++;
-        }
       }
     }
   }
 
   if (level==2) {
-    fill(255, 0, 255);
-    textSize(50);
-    text(p, 50, 100);
-    if (millis() - lionTime > threshold) { 
-      if (index4< pearls.length) {
-        //timer to limit the pearls coming down at once
-        //uses the same timer as the lions
-        index4++;
-        lionTime = millis();
+      fill(255, 0, 255);
+      textSize(50);
+      text(p, 50, 100);
+      if (millis() - lionTime > threshold) { 
+        if (index4< pearls.length) {
+          //timer to limit the pearls coming down at once
+          //uses the same timer as the lions
+          index4++;
+          lionTime = millis();
+        }
+      }
+      for (int k=1; k<index4; k++) {
+        //display pearls and they fall
+        pearls[k].display();
+        pearls[k].fall();
+        if (k==15) {
+          k=0;
+        }
+        if (m.checkRunnerP (pearls[k]) == true) {
+          //if a  pearl falls through the runner, it goes away and the score increases
+          pearls[k].goAway();
+          threshold-=100;
+          p++;
+        }
+        if (p==10) {
+          level++;
+        }
       }
     }
-    for (int k=1; k<index4; k++) {
-      //display pearls and they fall
-      pearls[k].display();
-      pearls[k].fall();
-      if (k==15) {
-        k=0;
-      }
-      if (m.checkRunnerP (pearls[k]) == true) {
-        //if a  pearl falls through the runner, it goes away and the score increases
-        pearls[k].goAway();
-        threshold-=100;
-        p++;
-      }
-      if (p==10) {
-        level++;
+
+    if (level==3) {
+      for (int q=0; q<index3; q++) {
+        fireball[q] = new Fireballs();
+        //declare fireballs
+        if (m.checkRunnerF(fireball[q]) == true) {
+          //if the runner hits a fireball, back to start
+          stop = false;
+          level = 0;
+          fireball[q].reset();
+        }
       }
     }
   }
 
-  if (level==3) {
-    for ( int q=0; q<index3; q++) {
-      fireball[q] = new Fireballs();
-      //declare fireballs
-      if (m.checkRunnerF(fireball[q]) == true) {
-        //if the runner hits a fireball, back to start
-        stop = false;
-        level = 0;
-        fireball[q].reset();
-      }
-    }
-  }
-}
 

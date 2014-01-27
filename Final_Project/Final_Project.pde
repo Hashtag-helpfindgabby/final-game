@@ -7,6 +7,7 @@ boolean start, stop;
 PImage optc, opta;
 PImage startHere, story2, story3, story4, story5, cliff, endHere;
 boolean goC, goA;
+boolean introstory = true;
 boolean level1pic = false;
 boolean level2pic = false;
 int level;
@@ -19,10 +20,6 @@ int threshold = 5000;
 int lionTime = 0;
 int pearlTime = 0;
 int p = 0;
-int state = 0;
-int option = -1;
-long lastClick = System.currentTimeMillis();
-boolean[] keyStates = new boolean[526];
 void setup() {
   background(0);
   startHere =loadImage("background.jpg");
@@ -55,110 +52,6 @@ void setup() {
   }
 }
 void draw() {
-  switch (state) {
-    case 0: /* Game start */ {
-      chooseScreen();
-      break;
-    } case 1: {
-       levelOne();
-       break; 
-    } case 2: {
-      levelTwo();
-      break;
-    } case 3: {
-      levelThree();
-    } case 4: {
-      winMenu();
-      break;
-    } default: {
-      throw new RuntimeException("Invalid state");
-    }
-  }
-  if (state > 0 && state < 4 && keyPressed) {
-       if (key == 'd')
-          charPosX += charSpeed;
-       else if (key == 'a')
-          charPosX -= charSpeed;
-       else if (key == 'w')
-          charPosY -= charSpeed;
-       else if (key == 's')
-          charPosY += charSpeed; 
-       if (option == 0)
-         image(optc, charPosX, charPosY, 200, 250);
-       else if (option == 1)
-         image(opta, charPosX, charPosY, 200, 250);
-    }
-}
-/* Called to draw when the player must select a character */
-void chooseScreen() {
-  background(0);
-  image(startHere, 0, 0);
-  rectMode(CENTER);
-  fill(250);
-  stroke(250);
-  rect(width/2, 100, 350, 100);
-    textAlign(CENTER, CENTER);
-    textSize(25);
-    fill(0);
-    text("Choose your character!", width/2, 100);
-    image(optc, 75, 220, 200, 250);
-    image(opta, 520, 220, 200, 250);
-    if (mousePressed && (System.currentTimeMillis() - lastClick) > 500) {
-        if (mouseX > 75 && mouseX < 275 && mouseY > 220 && mouseY < 430) {
-          option = 0;
-          state = 1;
-        } else if (mouseX > 520 && mouseX < 720 && mouseY > 220 && mouseY < 430) {
-          state = 1;
-        }
-    }
-}
-int charPosX = 0;
-int charPosY = 1;
-int charSpeed = 5;
-void levelOne() {
-    image(l1, 0, 0, startHere.width, startHere.height);
-    if (millis() - lionTime > threshold) { 
-      if (index< lions.length) {
-        //timer to limit the lions coming out at once
-        index++;
-        lionTime = millis();
-        //if the difference b/w milli and lionTime is greater than threshold, then one lion goes
-      }
-    }
-    for (int i=0;i<index;i++) {
-      //declares lion class
-      lions[i].display();
-      lions[i].fall();
-      o.display1();
-      m.checkRunnerO(o);
-      o.display2();
-      m.checkRunnerO(o);
-      o.display3();
-      m.checkRunnerO(o);
-      if (m.checkRunnerL(lions[i]) == true) {
-        //if the lion touches the runner, you start over
-        state = 0;
-        m.loc.set(0, height/2);
-        index=1;
-      }
-
-      if (m.loc.x>width-m.d) {
-        lions[i].done();
-        m.loc.set(0, height*3/4);
-        //after level 1 is completerd, level2pic should be displayed
-      }
-   }
-}
-void levelTwo() {
-    image(l2, 0, 0, startHere.width, startHere.height);
-}
-void levelThree() {
-    image(l3, 0, 0, startHere.width, startHere.height);
-}
-void winMenu() {
-   /* Draw shenanigans about winning */ 
-}
-/*void draw() {
   if (start == true && stop == false) {
     //start screen
     background(0);
@@ -173,12 +66,9 @@ void winMenu() {
     text("Choose your character!", width/2, 100);
     image(optc, 75, 220, 200, 250);
     image(opta, 520, 220, 200, 250);
-    if (mousePressed && (System.currentTimeMillis() - lastClick) > 500) {
-        if (mouseX > 75 && mouseX < 275 && mouseY > 220 && mouseY < 430) {
-          System.out.println("You clicked optc");
-        } else if (mouseX > 520 && mouseX < 720 && mouseY > 220 && mouseY < 430) {
-          System.out.println("You clicked opta");
-        }
+    if (mousePressed) {
+      level1pic = true;
+      //if you click, you go to the first level story picture
     }
   }
 
@@ -211,6 +101,8 @@ void winMenu() {
   if (goA==true) {
     m.displayAnita();
   }
+  if (introstory == true) {
+    image(
   //level1pic is true, then the image for that story is displayed and the game starts
   if (level1pic == true) {
     image(story2, 0, 0, startHere.width, startHere.height);
@@ -310,5 +202,5 @@ void winMenu() {
       }
     }
   }
-}*/
+}
 

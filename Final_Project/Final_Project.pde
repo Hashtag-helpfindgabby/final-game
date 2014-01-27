@@ -7,7 +7,7 @@ boolean start, stop;
 PImage optc, opta;
 PImage startHere, story2, story3, story4, story5, cliff, endHere;
 boolean goC, goA;
-boolean intropic = true;
+boolean introstory = true;
 boolean level1pic = false;
 boolean level2pic = false;
 int level;
@@ -68,7 +68,7 @@ void draw() {
     image(opta, 520, 220, 200, 250);
     if (mousePressed) {
       level1pic = true;
-      //if you click, you go to the first level of the game
+      //if you click, you go to the first level story picture
     }
   }
 
@@ -101,6 +101,9 @@ void draw() {
   if (goA==true) {
     m.displayAnita();
   }
+  if (introstory == true) {
+    image(
+  //level1pic is true, then the image for that story is displayed and the game starts
   if (level1pic == true) {
     image(story2, 0, 0, startHere.width, startHere.height);
     if (keyPressed) {
@@ -109,10 +112,11 @@ void draw() {
       level+=1;
     }
   }
+  //level2pic is true, then the image for that story is disaplayed and after pressing a key, the level will increase 
   if (level2pic == true) {
     image(story3, 0, 0, startHere.width, startHere.height);
-    if (mouseButton == LEFT) {
-      level = 2;
+    if (mousePressed) {
+      level++;
     }
   }
   if (level==1) {
@@ -148,6 +152,7 @@ void draw() {
       if (m.loc.x>width-m.d) {
         lions[i].done();
         m.loc.set(0, height*3/4);
+        //after level 1 is completerd, level2pic should be displayed
         level2pic=true;
       }
     }

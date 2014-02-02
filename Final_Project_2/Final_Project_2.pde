@@ -245,7 +245,7 @@ void keyPressed() {
     else {
 
       if (level1pic==true) {
-        level3=true;
+        level1=true;
         level1pic=false;
       }
       if (level2pic==true) {
